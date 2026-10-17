@@ -1,0 +1,671 @@
+/* ── 星つむぎ 紹介ページの配色 ─────────────────────────────────────
+   iOS アプリの配色（starlink/UI/Theme.swift の Palette.night）をそのまま反映。
+   夜空 #0a1030→#1d2a5c   bg #0b1030   surface #151b3d   surface2 #1d2550
+   line rgba(169,180,234,.18)   text #eef1ff   text2 #a9b4ea   text3 #7f8bc4
+   accent #c9d2ff   ゆめいろ #fffbe6→#ffeeb0→#ffb3a6（あそぶボタン）   ink #3d2b3f
+   雪原 #dfe8f7
+   （puzzle_chan_web の構成を踏襲。あちらは淡い青、こちらはアプリと同じ夜空）
+
+   文字はアプリの Web 版と同じ「Zen Maru Gothic」。アプリは代わりに system rounded を使っている。
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Zen Maru Gothic", "Nunito", "Hiragino Maru Gothic ProN", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.85;
+  color: #eef1ff;
+  background-color: #0b1030;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background-color: rgba(11, 16, 48, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(169, 180, 234, 0.18);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.nav-logo h1 {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px rgba(200, 214, 255, 0.5);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-menu a {
+  color: #a9b4ea;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: #ffeeb0;
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: #7f8bc4;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 2px;
+  transition: color 0.2s ease;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+  color: #ffeeb0;
+}
+
+.lang-separator {
+  color: #4a548a;
+  font-size: 0.85rem;
+}
+
+/* Hero：アプリの夜空と雪原 */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 0 150px;
+  background:
+    radial-gradient(900px 420px at 80% 12%, rgba(150, 255, 215, 0.08) 0%, rgba(150, 255, 215, 0) 62%),
+    linear-gradient(#0a1030, #1d2a5c);
+}
+
+/* 星がまたたき、雪が舞う（script.js） */
+.hero-sky {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-container {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* アプリのホームの「星つむぎ」と同じ、光る見出し */
+.hero-mark {
+  font-size: 2.1rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  color: #fff;
+  text-shadow: 0 0 18px rgba(200, 214, 255, 0.55), 0 0 2px rgba(255, 255, 255, 0.8);
+  margin-bottom: 18px;
+}
+
+.hero-title {
+  font-size: clamp(1.9rem, 4.2vw, 2.85rem);
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+/* 語の途中で折り返らないよう、行のまとまりごとに改行させる */
+.hero-title span {
+  display: inline-block;
+}
+
+.hero-title-accent {
+  background: linear-gradient(135deg, #fffbe6, #ffeeb0 45%, #ffb3a6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-description {
+  font-size: 1.02rem;
+  color: #a9b4ea;
+  margin-bottom: 32px;
+  max-width: 34em;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary {
+  /* アプリの「あそぶ」ボタンと同じゆめいろ */
+  background: linear-gradient(135deg, #fffbe6 0%, #ffeeb0 42%, #ffb3a6 100%);
+  color: #3d2b3f;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55), 0 10px 30px rgba(255, 205, 170, 0.32);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55), 0 10px 40px rgba(255, 205, 170, 0.5);
+}
+
+.btn-outline {
+  border: 1.5px solid rgba(169, 180, 234, 0.35);
+  color: #eef1ff;
+  background: rgba(20, 26, 60, 0.55);
+}
+
+.btn-outline:hover {
+  background: rgba(29, 37, 80, 0.9);
+  transform: translateY(-1px);
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+}
+
+.app-icon-placeholder {
+  width: 232px;
+  height: 232px;
+  border-radius: 52px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(169, 180, 234, 0.25), 0 18px 54px rgba(0, 0, 0, 0.45), 0 0 60px rgba(200, 214, 255, 0.18);
+  transform: rotate(-2deg);
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: rotate(-2deg) translateY(-8px);
+  }
+}
+
+.app-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 雪原と、そこで丸くなる子猫 */
+.hero-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 70px;
+  background: #dfe8f7;
+  clip-path: ellipse(75% 100% at 50% 100%);
+}
+
+.hero-ground-cat {
+  position: absolute;
+  right: 14%;
+  bottom: 44px;
+  width: 64px;
+  filter: drop-shadow(0 0 12px rgba(255, 243, 200, 0.7));
+}
+
+/* Sections */
+.section-title {
+  text-align: center;
+  font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+.section-lead {
+  text-align: center;
+  color: #a9b4ea;
+  font-size: 0.96rem;
+  max-width: 46em;
+  margin: 0 auto 40px;
+  /* 最後の行に一語だけ落ちないよう、行の長さをそろえてもらう */
+  text-wrap: balance;
+}
+
+/* 見出しだけの節は、見出しの下に余白を足して本体と離す */
+.features .section-title,
+.download .section-title,
+.privacy .section-title,
+.contact .section-title {
+  margin-bottom: 48px;
+}
+
+/* カード（アプリの .group と同じ面） */
+.star-card,
+.feature-card,
+.download-info,
+.download-requirements,
+.privacy-content,
+.contact-method {
+  background: linear-gradient(135deg, #182048, #151b3d);
+  border: 1px solid rgba(169, 180, 234, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* How to play */
+.howto {
+  padding: 88px 0;
+  background: linear-gradient(#141c44, #0b1030);
+}
+
+.howto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 16px;
+}
+
+.star-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.star-card:hover,
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 24px rgba(200, 214, 255, 0.1);
+}
+
+.star-mark {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  display: block;
+  padding: 6px;
+  border-radius: 12px;
+  background: #1d2550;
+  filter: drop-shadow(0 0 6px rgba(255, 238, 176, 0.25));
+}
+
+.star-body h3 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.star-body p {
+  font-size: 0.88rem;
+  color: #a9b4ea;
+  line-height: 1.75;
+}
+
+/* Features */
+.features {
+  padding: 88px 0;
+  background-color: #0e1438;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  padding: 26px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-icon {
+  margin-bottom: 14px;
+}
+
+.icon-placeholder {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1d2550;
+  border: 1px solid rgba(169, 180, 234, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.feature-card h3 {
+  font-size: 1.02rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 0.92rem;
+  color: #a9b4ea;
+  line-height: 1.85;
+}
+
+/* Download */
+.download {
+  padding: 88px 0;
+  background-color: #0b1030;
+}
+
+.download-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.download-info,
+.download-requirements {
+  padding: 30px 28px;
+}
+
+.download-info {
+  position: relative;
+  overflow: hidden;
+}
+
+.download-cat {
+  position: absolute;
+  right: 22px;
+  top: 18px;
+  width: 78px;
+  filter: drop-shadow(0 0 12px rgba(255, 243, 200, 0.6));
+}
+
+.download-info h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+  padding-right: 90px;
+}
+
+.download-info p {
+  color: #a9b4ea;
+  font-size: 0.94rem;
+  margin-bottom: 22px;
+}
+
+.app-store-placeholder {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fffbe6 0%, #ffeeb0 42%, #ffb3a6 100%);
+  color: #3d2b3f;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55), 0 10px 30px rgba(255, 205, 170, 0.32);
+  transition: transform 0.2s ease;
+}
+
+.app-store-placeholder:hover {
+  transform: translateY(-1px);
+}
+
+.download-requirements h4 {
+  font-size: 0.95rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.download-requirements ul {
+  list-style: none;
+}
+
+.download-requirements li {
+  color: #a9b4ea;
+  font-size: 0.92rem;
+  padding: 7px 0 7px 22px;
+  position: relative;
+  border-bottom: 1px solid rgba(169, 180, 234, 0.12);
+}
+
+.download-requirements li:last-child {
+  border-bottom: none;
+}
+
+.download-requirements li::before {
+  content: "★";
+  position: absolute;
+  left: 2px;
+  font-size: 0.75rem;
+  top: 10px;
+  color: #ffeeb0;
+}
+
+/* Privacy */
+.privacy {
+  padding: 88px 0;
+  background-color: #0e1438;
+}
+
+.privacy-content {
+  padding: 36px 34px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.privacy-content h3 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.privacy-content h4 {
+  font-size: 0.98rem;
+  font-weight: 900;
+  margin: 26px 0 8px;
+  color: #eef1ff;
+}
+
+.privacy-content p {
+  color: #a9b4ea;
+  font-size: 0.93rem;
+}
+
+.privacy-content a {
+  color: #ffeeb0;
+}
+
+.privacy-update {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(169, 180, 234, 0.12);
+  font-size: 0.84rem !important;
+  color: #7f8bc4 !important;
+}
+
+/* Contact */
+.contact {
+  padding: 88px 0;
+  background-color: #0b1030;
+}
+
+.contact-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-content > p {
+  color: #a9b4ea;
+  margin-bottom: 36px;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  gap: 20px;
+  text-align: left;
+}
+
+.contact-method {
+  padding: 24px;
+}
+
+.contact-method h3 {
+  font-size: 0.98rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.contact-method p,
+.contact-method a {
+  font-size: 0.9rem;
+  color: #a9b4ea;
+}
+
+.contact-method a {
+  color: #ffeeb0;
+  text-decoration: none;
+}
+
+.contact-method a:hover {
+  text-decoration: underline;
+}
+
+/* Footer：雪原の色 */
+.footer {
+  background: #dfe8f7;
+  padding: 30px 0;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #4a5580;
+  font-size: 0.84rem;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-container,
+  .download-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 128px 0 130px;
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image {
+    order: -1;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .app-icon-placeholder {
+    width: 168px;
+    height: 168px;
+    border-radius: 38px;
+  }
+
+  .privacy-content {
+    padding: 26px 20px;
+  }
+
+  .download-cat {
+    width: 60px;
+  }
+}
